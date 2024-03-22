@@ -96,11 +96,13 @@ def complete_task(wallet_address):
 
 
 def perform():
-    addr = sys.argv[1] 
+    i = 1
+    addr = sys.argv[i]
     if addr is not None:
         print_in_color(f"Address {addr} started to work.", "\033[33m")
         while True:
             try:
+                print_in_color(f"Address {addr} started to work.", "\033[33m")
                 print_in_color(f"Preparing", "\033[33m")
                 time.sleep(10)
                 task_args = register_particle(addr)
@@ -111,7 +113,9 @@ def perform():
                 print_in_color(f"Address {addr} completed the task. ", "\033[32m")
             except Exception as e:
                 print_in_color(f"Error: {e}", "\033[31m")
-    else:
+                i=i+1
+                addr = sys.argv[i]    
+        else:
         print_in_color("Address not provided.", "\033[31m")
     
 if __name__ == "__main__":
